@@ -1,25 +1,54 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Proposal</title>
+    <title>My Love 💖</title>
     <style>
+        /* Romantic Gradient Background */
         body {
             text-align: center;
             font-family: Arial, sans-serif;
-            background-color: pink;
+            background: linear-gradient(to bottom right, #ff9a9e, #fad0c4);
             padding: 50px;
+            overflow: hidden;
         }
+
+        /* Container Box */
         .container {
             background: white;
             padding: 20px;
             border-radius: 10px;
             display: inline-block;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 10;
         }
+
+        /* Text Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        h2 {
+            animation: fadeIn 2s ease-in-out;
+            color: red;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        /* Button Animation */
         button {
             background-color: red;
             color: white;
@@ -28,20 +57,60 @@
             border: none;
             cursor: pointer;
             border-radius: 5px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        /* Floating Hearts Animation */
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: red;
+            animation: float 5s linear infinite;
         }
     </style>
 </head>
 <body>
+
+    <!-- Main Valentine Message -->
     <div class="container">
         <h2>Will you be my Valentine? ❤️</h2>
+        <p>You are the most special person in my life, and I love you so much! 💕</p>
         <button onclick="showMessage()">Yes</button>
         <p id="response"></p>
     </div>
 
     <script>
+        // Function to Show Message on Button Click
         function showMessage() {
-            document.getElementById("response").innerHTML = "Yay! I love you! ❤️";
+            document.getElementById("response").innerHTML = "Yay! I love you too! ❤️💖";
         }
+
+        // Function to Create Floating Hearts
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.top = "100vh";
+            heart.style.fontSize = Math.random() * 30 + 20 + "px";
+            heart.style.opacity = Math.random();
+            heart.style.position = "absolute";
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Generate Hearts Every 500ms
+        setInterval(createHeart, 500);
     </script>
+
 </body>
 </html>
+
